@@ -1,0 +1,142 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/Base_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scripts/Network_setup.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://sprites/random-cube.png" type="Texture" id=4]
+
+[sub_resource type="TileSet" id=1]
+0/name = "icon.png 0"
+0/texture = ExtResource( 3 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 64, 64 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="Network_setup" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="multiplayer_configure" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 0.5
+margin_bottom = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Create_server" type="Button" parent="multiplayer_configure"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 29.0
+margin_right = 200.0
+margin_bottom = 126.0
+custom_fonts/font = ExtResource( 1 )
+text = "Create Server"
+
+[node name="Join_server" type="Button" parent="multiplayer_configure"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = 149.0
+margin_right = 200.0
+margin_bottom = 246.0
+custom_fonts/font = ExtResource( 1 )
+text = "Join Server"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Server_ip_address" type="LineEdit" parent="multiplayer_configure"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -284.5
+margin_top = -98.0
+margin_right = 284.5
+margin_bottom = -26.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+placeholder_text = "Enter IP Address"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Username" type="LineEdit" parent="multiplayer_configure"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -250.0
+margin_top = 20.0
+margin_right = 250.0
+margin_bottom = 92.0
+custom_fonts/font = ExtResource( 1 )
+align = 1
+placeholder_text = "Enter Username"
+
+[node name="Random_name_button" type="Button" parent="multiplayer_configure"]
+margin_left = 770.0
+margin_top = 20.0
+margin_right = 1162.0
+margin_bottom = 442.0
+rect_scale = Vector2( 0.17, 0.17 )
+icon = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Device_ip_address" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 308.0
+margin_top = -90.0
+margin_right = 348.0
+margin_bottom = -14.0
+custom_fonts/font = ExtResource( 1 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start_game" type="Button" parent="CanvasLayer"]
+margin_left = 36.0
+margin_top = 24.0
+margin_right = 245.0
+margin_bottom = 92.0
+custom_fonts/font = ExtResource( 1 )
+text = "Start Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+format = 1
+tile_data = PoolIntArray( 327681, 0, 0, 327682, 0, 0, 393217, 0, 0, 393218, 0, 0 )
+
+[connection signal="pressed" from="multiplayer_configure/Create_server" to="." method="_on_Create_server_pressed"]
+[connection signal="pressed" from="multiplayer_configure/Join_server" to="." method="_on_Join_server_pressed"]
+[connection signal="pressed" from="multiplayer_configure/Random_name_button" to="." method="_on_Random_name_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Start_game" to="." method="_on_Start_game_pressed"]
